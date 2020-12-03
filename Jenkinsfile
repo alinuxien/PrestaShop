@@ -25,7 +25,7 @@ php composer.phar install'''
 
     stage('All Unit Tests') {
       steps {
-        sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests'
+        sh 'php vendor/bin/phpunit -c app/ --globals-backup --bootstrap tests/Unit/bootstrap.php tests'
       }
     }
 
