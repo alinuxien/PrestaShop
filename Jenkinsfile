@@ -25,7 +25,7 @@ php composer.phar install'''
 
     stage('All Unit Tests') {
       steps {
-        sh 'composer test-all'
+        sh 'php bin/phpunit'
       }
     }
 
