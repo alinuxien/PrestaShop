@@ -25,7 +25,7 @@ php composer.phar install'''
 
     stage('All Unit Tests') {
       steps {
-        sh 'php bin/phpunit'
+        sh 'php vendor/bin/phpunit --bootstrap tests/Unit/bootstrap.php tests'
       }
     }
 
