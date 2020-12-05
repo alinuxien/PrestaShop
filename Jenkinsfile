@@ -25,7 +25,8 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh 'SYMFONY_DEPRECATIONS_HELPER="weak"; php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
+        sh '''chmod -R 777 *;
+SYMFONY_DEPRECATIONS_HELPER="weak" && php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'''
       }
     }
 
