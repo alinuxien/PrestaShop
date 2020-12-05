@@ -25,13 +25,13 @@ php composer.phar install'''
 
     stage('Artifact') {
       steps {
-        archiveArtifacts '*'
+        archiveArtifacts '**/*.*'
       }
     }
 
     stage('Unit Tests') {
       steps {
-        sh 'php vendor/bin/phpunit -c app/ --globals-backup --bootstrap tests/Unit/bootstrap.php tests'
+        sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
       }
     }
 
