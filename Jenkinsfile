@@ -25,7 +25,7 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh 'chmod -R a+w $PWD && chmod -R a+w $WORKSPACE && SYMFONY_DEPRECATIONS_HELPER="weak" && sudo php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
+        sh 'whoami && chmod -R a+w $PWD && chmod -R a+w $WORKSPACE && SYMFONY_DEPRECATIONS_HELPER="weak" && php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
       }
     }
 
