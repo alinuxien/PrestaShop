@@ -25,7 +25,7 @@ php composer.phar install'''
 
     stage('Unit Tests') {
       steps {
-        sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
+        sh 'SYMFONY_DEPRECATIONS_HELPER="weak"; php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
       }
     }
 
