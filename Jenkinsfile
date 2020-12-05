@@ -23,7 +23,13 @@ php composer.phar install'''
       }
     }
 
-    stage('All Unit Tests') {
+    stage('Artifact') {
+      steps {
+        archiveArtifacts '*'
+      }
+    }
+
+    stage('Unit Tests') {
       steps {
         sh 'php vendor/bin/phpunit -c app/ --globals-backup --bootstrap tests/Unit/bootstrap.php tests'
       }
