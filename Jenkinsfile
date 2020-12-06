@@ -26,8 +26,7 @@ php -r "copy(\'https://getcomposer.org/installer\', \'composer-setup.php\');"
 
     stage('Unit Tests') {
       steps {
-        sh '''SYMFONY_DEPRECATIONS_HELPER="disabled";
-php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'''
+        sh 'SYMFONY_DEPRECATIONS_HELPER="weak" && php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
       }
     }
 
