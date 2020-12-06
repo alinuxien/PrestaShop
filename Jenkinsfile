@@ -25,8 +25,9 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh '''SYMFONY_DEPRECATIONS_HELPER="disabled";
-php vendor/bin/phpunit --debug --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit || true'''
+        sh '''chmod +x -R ${env.WORKSPACE};
+SYMFONY_DEPRECATIONS_HELPER="disabled";
+php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'''
       }
     }
 
