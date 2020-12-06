@@ -32,7 +32,7 @@ php vendor/bin/phpunit --debug --globals-backup --bootstrap tests/Unit/bootstrap
 
     stage('Build Containers') {
       steps {
-        sh '/usr/local/bin/docker-compose up --build'
+        sh '/usr/bin/docker-compose up --build'
       }
     }
 
