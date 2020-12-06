@@ -1,10 +1,5 @@
 pipeline {
   agent any
-  
-  environment {
-        SYMFONY_DEPRECATIONS_HELPER = 'weak'
-  }
-
   stages {
     stage('Composer Install') {
       steps {
@@ -28,7 +23,7 @@ pipeline {
         sh 'make assets'
       }
     }
-    
+
     stage('Unit Tests') {
       steps {
         sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
@@ -37,9 +32,12 @@ pipeline {
 
     stage('Build Containers') {
       steps {
-        sh '/usr/bin/docker-compose up --build'
+        sh '/usr/bin/docker-compose up -d --build'
       }
     }
 
+  }
+  environment {
+    SYMFONY_DEPRECATIONS_HELPER = 'weak'
   }
 }
