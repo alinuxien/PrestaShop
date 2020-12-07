@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build Containers') {
       steps {
-        step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: false])
+        sh '/usr/bin/docker-compose up --build'
       }
     }
 
