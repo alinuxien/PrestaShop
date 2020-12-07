@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build Containers') {
       steps {
-        sh '/usr/bin/docker-compose up --build'
+        sh '/usr/bin/docker-compose up --detach --build'
       }
     }
 
