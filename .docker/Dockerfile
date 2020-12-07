@@ -1,8 +1,11 @@
 FROM prestashop/prestashop-git:latest
 
+RUN (adduser --system --uid=$(id -u $USER) --gid=$(id -g $USER) \
+        --home /home/jenkins --shell /bin/bash jenkins)
+
 # To run files with the same group as your primary user
-RUN groupmod -g 1000 www-data \
-  && usermod -u 1000 -g 1000 www-data
+RUN groupmod -g $(id -g $USER) www-data \
+  && usermod -u $(id -u $USER) -g $(id -g $USER) www-data
 
 COPY /wait-for-it.sh /tmp/
 COPY /docker_run_git.sh /tmp/
