@@ -5,8 +5,8 @@ RUN addgroup --system --gid 120 jenkins \
         --home /home/jenkins --shell /bin/bash jenkins    
 
 # To run files with the same group as your primary user
-RUN groupmod -g jenkins www-data \
-  && usermod -u jenkins -g jenkins www-data
+RUN groupmod -g 120 www-data \
+  && usermod -u 114 -g 120 www-data
 
 COPY /wait-for-it.sh /tmp/
 COPY /docker_run_git.sh /tmp/
