@@ -1,7 +1,7 @@
 FROM prestashop/prestashop-git:latest
 
-RUN addgroup --system --gid eval$(id -g $USER ) jenkins \
- && adduser --system --uid eval$(id -u $USER ) -ingroup jenkins \
+RUN addgroup --system --gid 120 jenkins \
+ && adduser --system --uid 114 --ingroup jenkins \
         --home /home/jenkins --shell /bin/bash jenkins    
 
 # To run files with the same group as your primary user
