@@ -1,11 +1,12 @@
 FROM prestashop/prestashop-git:latest
 
-RUN (adduser --system --uid=114 --gid=120 \
-        --home /home/jenkins --shell /bin/bash jenkins)
+RUN addgroup --system --gid eval$(id -g $USER ) jenkins \
+ && adduser --system --uid eval$(id -u $USER ) -ingroup jenkins \
+        --home /home/jenkins --shell /bin/bash jenkins    
 
 # To run files with the same group as your primary user
-RUN groupmod -g 120 www-data \
-  && usermod -u 114 -g 120 www-data
+RUN groupmod -g jenkins www-data \
+  && usermod -u jenkins -g jenkins www-data
 
 COPY /wait-for-it.sh /tmp/
 COPY /docker_run_git.sh /tmp/
