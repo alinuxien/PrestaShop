@@ -1,0 +1,14 @@
+vendor
+var
+.git
+.gitignore
+.github
+ACKNOWLEDGEMENTS.md
+CONTRIBUTING.md
+CONTRIBUTORS.md
+CODE_OF_CONDUCT.md
+docker-compose.yml
+INSTALL.txt
+Jenkinsfile
+LICENSE.md
+README.md
