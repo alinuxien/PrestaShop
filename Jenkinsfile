@@ -30,9 +30,9 @@ pipeline {
       }
     }
 
-    stage('Build Containers') {
+    stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker-compose up --detach --build'
+        sh '/usr/bin/docker build -t ${BUILD_TAG}'
       }
     }
 
