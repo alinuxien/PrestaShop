@@ -39,6 +39,6 @@ pipeline {
   }
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
-    MY_TAG=${BUILD_TAG}.toLowerCase()
+    MY_TAG="${BUILD_TAG}.toLowerCase()"
   }
 }
