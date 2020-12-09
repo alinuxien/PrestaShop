@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker build -t ${BUILD_TAG}'
+        sh 'MY_TAG=${BUILD_TAG}.toLowerCase() && /usr/bin/docker build -t ${MY_TAG}'
       }
     }
 
