@@ -32,12 +32,13 @@ pipeline {
 
     stage('Build App Container') {
       steps {
-        sh 'MY_TAG=${BUILD_TAG}.toLowerCase() && /usr/bin/docker build -t ${MY_TAG}'
+        sh '/usr/bin/docker build -t ${MY_TAG}'
       }
     }
 
   }
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
+    MY_TAG=${BUILD_TAG}.toLowerCase()
   }
 }
