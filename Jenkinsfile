@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker build -t ${BUILD_ID}'
+        sh '/usr/bin/docker build -t ${BUILD_ID} .docker'
       }
     }
 
