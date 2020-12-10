@@ -16,4 +16,8 @@ WORKDIR /var/www/html
 
 ENV COMPOSER_MEMORY_LIMIT=4G
 
+RUN composer update --no-dev --prefer-dist
+
 RUN APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+
+RUN make assets
