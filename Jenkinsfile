@@ -1,3 +1,5 @@
+def DOCKER_TAG = env.BUILD_TAG.toLowerCase()
+
 pipeline {
   agent any
   stages {
@@ -32,13 +34,12 @@ pipeline {
 
     stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker build -t ${MY_TAG}'
+        sh '/usr/bin/docker build -t ${DOCKER_TAG}'
       }
     }
 
   }
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
-    MY_TAG="${BUILD_TAG}.toLowerCase()"
   }
 }
