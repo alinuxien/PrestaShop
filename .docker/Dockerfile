@@ -4,6 +4,9 @@ FROM prestashop/prestashop-git:latest
 RUN groupmod -g 1000 www-data \
   && usermod -u 1000 -g 1000 www-data
 
+COPY /wait-for-it.sh /tmp/
+COPY /docker_run_git.sh /tmp/
+
 RUN mkdir -p /var/www/.npm
 RUN chown -R www-data:www-data /var/www/.npm
 
