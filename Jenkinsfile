@@ -1,5 +1,3 @@
-def DOCKER_TAG = env.BUILD_TAG.toLowerCase()
-
 pipeline {
   agent any
   stages {
@@ -34,7 +32,7 @@ pipeline {
 
     stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker build -t ${DOCKER_TAG}'
+        sh '/usr/bin/docker build -t ${BUILD_ID}'
       }
     }
 
