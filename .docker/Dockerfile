@@ -14,6 +14,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt install -y nodejs
 
 COPY . /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 WORKDIR /var/www/html
 
