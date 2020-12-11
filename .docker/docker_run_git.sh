@@ -55,7 +55,7 @@ if [ ! -f ./config/settings.inc.php ]; then
         fi
 
         echo "\n* Launching the installer script..."
-        runuser -g www-data -u www-data -- php /var/www/html/$PS_FOLDER_INSTALL/index_cli.php \
+        php /var/www/html/$PS_FOLDER_INSTALL/index_cli.php \
         --domain="$PS_DOMAIN" --db_server=$DB_SERVER:$DB_PORT --db_name="$DB_NAME" --db_user=$DB_USER \
         --db_password=$DB_PASSWD --prefix="$DB_PREFIX" --firstname="John" --lastname="Doe" \
         --password=$ADMIN_PASSWD --email="$ADMIN_MAIL" --language=$PS_LANGUAGE --country=$PS_COUNTRY \
