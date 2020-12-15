@@ -1,9 +1,7 @@
-version: '2.1'
+version: '3.3'
 
 volumes:
   db-data:
-  vendor:
-  var:
 
 services:
   mysql:
@@ -17,11 +15,12 @@ services:
       MYSQL_DATABASE: prestashop
     restart: always
   prestashop-git:
-    build: .docker
+    image: prestashop:${BUILD_ID}
     environment:
       DISABLE_MAKE: ${DISABLE_MAKE:-0}
       PS_INSTALL_AUTO: ${PS_INSTALL_AUTO:-1}
       DB_PASSWD: ${DB_PASSWD:-prestashop}
+      DB_USER: ${DB_USER:-root}
       DB_NAME: ${DB_NAME:-prestashop}
       DB_SERVER: ${DB_SERVER:-mysql}
       PS_DOMAIN: ${PS_DOMAIN:-localhost:8001}
@@ -30,7 +29,3 @@ services:
     command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/docker_run_git.sh"]
     ports:
       - "8001:80"
-    volumes:
-      - ./:/var/www/html/:delegated
-      - vendor:/var/www/html/vendor
-      - var:/var/www/html/var
