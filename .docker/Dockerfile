@@ -20,4 +20,7 @@ WORKDIR /var/www/html
 
 ENV COMPOSER_MEMORY_LIMIT=4G
 
+RUN runuser -g www-data -u www-data -- /usr/local/bin/composer install --no-interaction
+RUN runuser -g www-data -u www-data -- /usr/bin/make assets
+
 CMD ["/tmp/docker_run_git.sh"]
