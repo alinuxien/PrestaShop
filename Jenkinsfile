@@ -32,6 +32,7 @@ pipeline {
 
     stage('Build App Container') {
       steps {
+        sh '/usr/bin/docker rmi -f prestashop:*'
         sh '/usr/bin/docker build -t prestashop:${BUILD_ID} .docker'
       }
     }
@@ -39,11 +40,9 @@ pipeline {
     stage('Tests Fonctionnels') {
       steps {
         sh 'docker-compose up -d'
-        sh '''sleep 300;
-wget -t 30 -w 10 http://127.0.0.1:8001;'''
-        sh '''python3 tests/Fonctionnal/test_front_office.py;
-python3 tests/Fonctionnal/test_back_office.py;'''
-        sh 'docker-compose down'
+        sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
+        sh 'python3 -m unittest discover --pattern test*.py --start-directory tests/Functional'
+        sh 'docker-compose down -v'
       }
     }
 
