@@ -49,5 +49,6 @@ pipeline {
   }
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
+    DISPLAY = ':1.5'
   }
 }
