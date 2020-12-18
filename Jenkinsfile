@@ -41,8 +41,8 @@ pipeline {
       steps {
         sh 'docker-compose up -d'
         sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
-        sh '''python3 tests/Functional/test_front_office.py
-python3 tests/Functional/test_back_office.py
+        sh '''python3 tests/Functional/test_front_office.py;
+python3 tests/Functional/test_back_office.py;
 '''
         sh 'docker-compose down -v'
       }
