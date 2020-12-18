@@ -1,15 +1,16 @@
+import HtmlTestRunner
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class PythonOrgSearch(unittest.TestCase):
+class PrestaShopBackOffice(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome('/usr/local/bin/chromedriver', service_args=['--verbose', '--log-path=./selenium.log'])
+        self.driver = webdriver.Chrome('/usr/local/bin/chromedriver')
 
-    def test_search_in_python_org(self):
+    def test_login_to_dashboard(self):
         driver = self.driver
         driver.get("http://127.0.0.1:8001/admin-dev")
         current_url = driver.current_url
@@ -28,4 +29,4 @@ class PythonOrgSearch(unittest.TestCase):
         self.driver.close()
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner()
