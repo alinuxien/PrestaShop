@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker rmi $(/usr/bin/docker images --format "{{.Repository}}:{{.Tag}}" | grep "prestashop")'
+        sh '/usr/bin/docker rmi $(/usr/bin/docker images --format "{{.Repository}}:{{.Tag}}" | grep "prestashop") || true'
         sh '/usr/bin/docker build -t prestashop:${BUILD_ID} .docker'
       }
     }
