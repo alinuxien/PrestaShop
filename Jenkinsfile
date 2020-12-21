@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker build -t prestashop:${BUILD_ID} -f .docker/Dockerfile .'
+        sh '/usr/bin/docker build -t prestashop:${BUILD_ID} .docker'
       }
     }
 
