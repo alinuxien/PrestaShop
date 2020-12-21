@@ -27,13 +27,14 @@ pipeline {
     stage('Unit Tests') {
       steps {
         sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true, disableDeferredWipeout: true)
       }
     }
 
     stage('Build App Container') {
       steps {
         sh '/usr/bin/docker rmi $(/usr/bin/docker images --format "{{.Repository}}:{{.Tag}}" | grep "prestashop") || true'
-        sh '/usr/bin/docker build -t prestashop:${BUILD_ID} .docker'
+        sh '/usr/bin/docker build -t prestashop:${BUILD_ID} -f .docker/Dockerfile .'
       }
     }
 
