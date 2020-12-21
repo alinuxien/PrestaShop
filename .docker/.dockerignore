@@ -1,8 +1,17 @@
+tests
+tests-legacy
+travis-scripts
 vendor
 var
+.cache
+.docker
+.editorconfig
 .git
 .gitignore
 .github
+.php_cs.dist
+.t9n.yml
+.travis.yml
 ACKNOWLEDGEMENTS.md
 CONTRIBUTING.md
 CONTRIBUTORS.md
@@ -12,3 +21,6 @@ INSTALL.txt
 Jenkinsfile
 LICENSE.md
 README.md
+diff-hooks.php
+docker-compose.yml
+phpstan.neon.dist
