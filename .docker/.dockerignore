@@ -4,7 +4,6 @@ travis-scripts
 vendor
 var
 .cache
-.docker
 .editorconfig
 .git
 .gitignore
@@ -16,7 +15,6 @@ ACKNOWLEDGEMENTS.md
 CONTRIBUTING.md
 CONTRIBUTORS.md
 CODE_OF_CONDUCT.md
-docker-compose.yml
 INSTALL.txt
 Jenkinsfile
 LICENSE.md
