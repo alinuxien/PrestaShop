@@ -48,9 +48,7 @@ pipeline {
 
     stage('Rapport de Tests Fonctionnels') {
       steps {
-        seleniumHtmlReport('reports') {
-            failOnExceptions()
-        }
+       publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: 'index.html', reportName: 'Rapports de Tests Fonctionnels Selenium', reportTitles: 'selenium_reports'])
       }
     }
     
