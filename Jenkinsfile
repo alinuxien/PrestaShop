@@ -36,7 +36,7 @@ pipeline {
       }
     }
 
-    stage('Tests') {
+    stage('Functional Tests') {
       steps {
         sh 'docker-compose up -d'
         sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
@@ -46,7 +46,7 @@ pipeline {
       }
       post {
         always {
-          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: 'index.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
+          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: files.join(','), reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
         }
       }
     }
