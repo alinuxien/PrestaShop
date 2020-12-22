@@ -44,6 +44,7 @@ pipeline {
               python3 tests/Functional/test_back_office.py;'''
         sh 'docker-compose down -v'
       }
+      step([$class: 'SeleniumHtmlReportPublisher', testResultsDir: 'reports'])
       post {
         always {
           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: '*.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
