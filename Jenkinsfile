@@ -44,16 +44,15 @@ pipeline {
               python3 tests/Functional/test_back_office.py;'''
         sh 'docker-compose down -v'
       }
+      post {
+        always {
+          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: 'index.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
+        }
+      }
     }
     
   }
-  
-  post {
-        always {
-            junit 'reports/*.html'
-        }
-    }
-  
+   
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
     DISPLAY = ':1.5'
