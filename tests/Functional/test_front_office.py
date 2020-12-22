@@ -1,4 +1,4 @@
-import HtmlTestRunner
+import xmlrunner
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -17,5 +17,5 @@ class PrestaShopFrontOffice(unittest.TestCase):
         self.driver.close()
 
 if __name__ == "__main__":
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner())
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='reports'))
                   
