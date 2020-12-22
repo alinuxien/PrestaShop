@@ -43,7 +43,7 @@ pipeline {
         sh '''python3 tests/Functional/test_front_office.py;
               python3 tests/Functional/test_back_office.py;'''
         sh 'docker-compose down -v'
-        step([$class: 'SeleniumHtmlReportPublisher', testResultsDir: 'reports'])
+        step([$class: 'SeleniumHtmlReportPublisher', failureIfExceptionOnParsingResultFiles: false, testResultsDir: 'reports'])
       }
       post {
         always {
