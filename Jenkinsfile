@@ -46,7 +46,7 @@ pipeline {
       }
       post {
         always {
-          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: files.join(','), reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
+          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: '*.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
         }
       }
     }
