@@ -36,7 +36,7 @@ pipeline {
       }
     }
 
-    stage('Tests Fonctionnels') {
+    stage('Tests') {
       steps {
         sh 'docker-compose up -d'
         sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
@@ -45,14 +45,15 @@ pipeline {
         sh 'docker-compose down -v'
       }
     }
-
-    stage('Rapport de Tests Fonctionnels') {
-      steps {
-       publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: 'index.html', reportName: 'Rapports de Tests Fonctionnels Selenium', reportTitles: 'selenium_reports'])
-      }
-    }
     
   }
+  
+  post {
+        always {
+            junit 'reports/*.html'
+        }
+    }
+  
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
     DISPLAY = ':1.5'
