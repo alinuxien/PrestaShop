@@ -27,7 +27,6 @@ pipeline {
     stage('Unit Tests') {
       steps {
         sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit --log-junit report_unit.xml'
-        junit 'report_unit.xml'
       }
     }
 
@@ -45,6 +44,7 @@ pipeline {
               python3 tests/Functional/test_back_office.py;'''
         sh 'docker-compose down -v'
         junit 'reports/TEST*.xml'
+        junit 'report_unit.xml'
       }
     }
 
