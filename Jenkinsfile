@@ -40,7 +40,7 @@ pipeline {
       steps {
         sh 'docker-compose up -d'
         sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
-        sh 'python3 -m xmlrunner discover -t tests/Functional -o reports'
+        sh 'python3 -m xmlrunner discover tests/Functional -o reports'
         sh 'docker-compose down -v'
         junit 'reports/TEST*.xml'
         junit 'report_unit.xml'
