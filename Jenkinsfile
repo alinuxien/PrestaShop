@@ -38,12 +38,6 @@ pipeline {
     }
 
     stage('Functional Tests') {
-      post {
-        always {
-          publishHTML(allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: '*.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: '')
-        }
-
-      }
       steps {
         sh 'docker-compose up -d'
         sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
