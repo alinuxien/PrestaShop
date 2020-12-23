@@ -26,7 +26,8 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
+        sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit --log-junit report_unit.xml'
+        junit 'report_unit.xml'
       }
     }
 
@@ -37,6 +38,12 @@ pipeline {
     }
 
     stage('Functional Tests') {
+      post {
+        always {
+          publishHTML(allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: '*.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: '')
+        }
+
+      }
       steps {
         sh 'docker-compose up -d'
         sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
@@ -45,15 +52,9 @@ pipeline {
         sh 'docker-compose down -v'
         step([$class: 'SeleniumHtmlReportPublisher', failureIfExceptionOnParsingResultFiles: false, testResultsDir: 'reports'])
       }
-      post {
-        always {
-          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: '*.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
-        }
-      }
     }
-    
+
   }
-   
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
     DISPLAY = ':1.5'
