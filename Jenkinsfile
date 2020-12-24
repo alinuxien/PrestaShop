@@ -39,7 +39,7 @@ pipeline {
     stage('Functional Tests') {
       steps {
         sh 'docker-compose up -d'
-        sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
+        sh 'wget -t 30 -w 10 http://${SRV_QA}'
         sh 'python3 -m xmlrunner discover tests/Functional -o reports'
         sh 'docker-compose down -v'
         junit 'reports/TEST*.xml'
@@ -51,5 +51,6 @@ pipeline {
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
     DISPLAY = ':1.5'
+    SRV_QA = '127.0.0.1:8001'
   }
 }
