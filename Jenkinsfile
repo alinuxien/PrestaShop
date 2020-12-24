@@ -26,13 +26,13 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit'
+        sh 'php vendor/bin/phpunit --globals-backup --bootstrap tests/Unit/bootstrap.php tests/Unit --log-junit report_unit.xml'
       }
     }
 
     stage('Build App Container') {
       steps {
-        sh '/usr/bin/docker build -t prestashop:${BUILD_ID} .docker'
+        sh '/usr/bin/docker build -t prestashop:${BRANCH_NAME}-${BUILD_ID} .docker'
       }
     }
 
@@ -40,20 +40,14 @@ pipeline {
       steps {
         sh 'docker-compose up -d'
         sh 'wget -t 30 -w 10 http://127.0.0.1:8001'
-        sh '''python3 tests/Functional/test_front_office.py;
-              python3 tests/Functional/test_back_office.py;'''
+        sh 'python3 -m xmlrunner discover tests/Functional -o reports'
         sh 'docker-compose down -v'
-        step([$class: 'SeleniumHtmlReportPublisher', failureIfExceptionOnParsingResultFiles: false, testResultsDir: 'reports'])
-      }
-      post {
-        always {
-          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: '*.html', reportName: 'Rapport de Tests Fonctionnels Selenium', reportTitles: ''])
-        }
+        junit 'reports/TEST*.xml'
+        junit 'report_unit.xml'
       }
     }
-    
+
   }
-   
   environment {
     SYMFONY_DEPRECATIONS_HELPER = 'weak'
     DISPLAY = ':1.5'
