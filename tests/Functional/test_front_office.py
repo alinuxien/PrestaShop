@@ -1,3 +1,4 @@
+import os
 import xmlrunner
 import unittest
 from selenium import webdriver
@@ -10,7 +11,7 @@ class PrestaShopFrontOffice(unittest.TestCase):
 
     def test_homepage(self):
         driver = self.driver
-        driver.get("http://127.0.0.1:8001")
+        driver.get(os.getenv('SRV_QA'))
         self.assertIn("PrestaShop", driver.title)
 
     def tearDown(self):
