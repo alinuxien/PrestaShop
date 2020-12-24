@@ -1,3 +1,4 @@
+import os
 import xmlrunner
 import unittest
 from selenium import webdriver
@@ -12,7 +13,7 @@ class PrestaShopBackOffice(unittest.TestCase):
 
     def test_login_to_dashboard(self):
         driver = self.driver
-        driver.get("http://127.0.0.1:8001/admin-dev")
+        driver.get(os.getenv('SRV_QA') + "/admin-dev")
         current_url = driver.current_url
         login = driver.find_element_by_id("email")
         login.clear()
