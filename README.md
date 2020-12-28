@@ -9,6 +9,7 @@ J'ai utilisé les plugins Blue Ocean pour obtenir un affichage plutôt sympa :
 
 ## Contenu ?
 Le dépôt est basé sur la branche `develop` du dépôt officiel de [PrestaShop](https://github.com/PrestaShop/PrestaShop)
+
 Les fichiers spécifiques que j'ai préparés/personnalisés sont : 
 - Jenkinsfile
 - docker-compose.yml
