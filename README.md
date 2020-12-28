@@ -1,4 +1,4 @@
-# Bienvenue sur mon projet PrestaShop !
+# Bienvenue sur mon projet de CI orienté QA pour PrestaShop!
 Il s'agit d'un projet réalisé en Novembre-Décembre 2020 dans le cadre de ma formation "Expert DevOps" chez OpenClassRooms.
 
 ## Ca fait quoi ?
