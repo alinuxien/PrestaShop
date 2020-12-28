@@ -2,7 +2,7 @@
 Il s'agit d'un projet réalisé en Novembre-Décembre 2020 dans le cadre de ma formation "Expert DevOps" chez OpenClassRooms.
 
 ## Ca fait quoi ?
-Ca fait de l'Intégration Continue ( CI ) à l'attention d'une équipe de QA qui a en charge de vérifier le bon fonctionnement des développements réalisés sur PrestaShop, et qui souahite automatiser ses tests fonctionnels
+Ca fait de l'Intégration Continue ( CI ) à l'aide de Jenkins, à l'attention d'une équipe de QA qui a en charge de vérifier le bon fonctionnement des développements réalisés sur PrestaShop, et qui souahite automatiser ses tests fonctionnels
 
 ## Ca ressemble à quoi ?
 J'ai utilisé les plugins Blue Ocean pour obtenir un affichage plutôt sympa : 
