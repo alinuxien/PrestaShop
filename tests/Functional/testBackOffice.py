@@ -11,7 +11,7 @@ class PrestaShopBackOffice(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome('/usr/local/bin/chromedriver')
 
-    def test_login_to_dashboard(self):
+    def testLoginToDashboard(self):
         driver = self.driver
         driver.get(os.getenv('SRV_QA') + "/admin-dev")
         current_url = driver.current_url
